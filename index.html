@@ -187,8 +187,12 @@
                         </table>
                     </div>
                     
-                    <div class="p-4 border-t border-gray-100 bg-gray-50 flex justify-end">
-                        <button onclick="saveAttendance()" id="btn-save" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-8 rounded-lg shadow-sm transition-all hover-scale flex items-center">
+                    <div class="p-4 border-t border-gray-100 bg-gray-50 flex justify-between items-center">
+                        <button onclick="deleteAttendance()" id="btn-delete-absensi" class="bg-red-100 hover:bg-red-200 text-red-700 font-bold py-2.5 px-4 md:px-6 rounded-lg shadow-sm transition-all hover-scale flex items-center hidden">
+                            <svg class="w-5 h-5 md:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            <span class="hidden md:inline">Hapus Absensi Ini</span>
+                        </button>
+                        <button onclick="saveAttendance()" id="btn-save" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-8 rounded-lg shadow-sm transition-all hover-scale flex items-center ml-auto">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
                             Simpan Absensi
                         </button>
@@ -260,6 +264,49 @@
                         </ul>
                     </div>
                 </div>
+
+                <!-- Section Pusat Informasi (Pengumuman) -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mt-6 animate-fade-in delay-300">
+                    <h3 class="font-bold text-gray-800 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+                        Pusat Informasi & Pengumuman
+                    </h3>
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Judul Pengumuman</label>
+                            <input type="text" id="info-title" placeholder="Cth: Rapat Evaluasi Bulanan" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 text-gray-800 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi / Teks Informasi</label>
+                            <textarea id="info-desc" rows="3" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 text-gray-800 transition-all" placeholder="Tuliskan informasi atau pesan untuk peserta di sini..."></textarea>
+                        </div>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="flex-1">
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Tautan Lampiran (URL / Drive / Gambar)</label>
+                                <input type="url" id="info-link" placeholder="Cth: https://s.id/jadwal-asrama atau link gambar" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 text-gray-800 transition-all">
+                            </div>
+                            <div class="md:w-1/3">
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Jenis Lampiran</label>
+                                <select id="info-type" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 text-gray-800 transition-all">
+                                    <option value="text">Hanya Teks/Tautan Biasa</option>
+                                    <option value="image">Tampilkan Sebagai Gambar</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-end mb-6 border-b border-gray-100 pb-6">
+                        <button onclick="saveAnnouncement()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-6 rounded-lg transition-all hover-scale flex items-center justify-center shadow-sm">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            Terbitkan Informasi
+                        </button>
+                    </div>
+                    <div class="overflow-hidden">
+                        <h4 class="font-semibold text-gray-700 mb-3">Daftar Pengumuman Aktif</h4>
+                        <ul id="admin-info-list" class="space-y-3 divide-y divide-gray-100">
+                            <li class="text-sm text-gray-500 italic py-2">Memuat daftar pengumuman...</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <!-- DASHBOARD BENDAHARA -->
@@ -285,10 +332,14 @@
                                     <!-- Populated by JS -->
                                 </select>
                             </div>
-                            <div class="flex-1 flex items-end">
-                                <button onclick="saveKasPayment()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-colors shadow-sm flex items-center justify-center">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    Set Lunas Bulan Ini
+                            <div class="flex-1 flex flex-col md:flex-row items-end gap-2">
+                                <button onclick="saveKasPayment()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-sm flex items-center justify-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    Set Lunas
+                                </button>
+                                <button onclick="cancelKasPayment()" class="w-full bg-red-100 text-red-700 hover:bg-red-200 font-medium py-2 px-4 rounded-lg transition-colors shadow-sm flex items-center justify-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                    Batal Lunas
                                 </button>
                             </div>
                         </div>
@@ -344,6 +395,7 @@
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Jenis</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Keterangan</th>
                                     <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Jumlah</th>
+                                    <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="bendahara-trx-body" class="bg-white divide-y divide-gray-100">
@@ -363,6 +415,20 @@
                     </div>
                     <div class="mt-2 md:mt-0 bg-blue-100 text-blue-800 px-4 py-2 rounded-lg font-medium text-sm border border-blue-200">
                         Total Kehadiran: <span id="user-total-all" class="font-bold text-lg">0</span> kali
+                    </div>
+                </div>
+
+                <!-- Section Pengumuman Terbaru -->
+                <div id="user-announcement-container" class="mb-6 hidden animate-fade-in">
+                    <div class="flex items-center mb-3">
+                        <span class="relative flex h-3 w-3 mr-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
+                        </span>
+                        <h3 class="font-bold text-gray-800 text-lg">Pengumuman Terbaru</h3>
+                    </div>
+                    <div id="user-announcement-list" class="space-y-4">
+                        <!-- Populated by JS -->
                     </div>
                 </div>
 
@@ -624,20 +690,40 @@
                 </div>
             </div>
         </div>
+
+        <!-- UI Modal for Confirmations -->
+        <div id="modal-confirm-backdrop" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full p-6 text-center transform transition-all scale-95 opacity-0" id="modal-confirm-content">
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100 text-yellow-600 mb-4 hover-scale">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                </div>
+                <h3 class="text-lg leading-6 font-bold text-gray-900" id="modal-confirm-title">Konfirmasi</h3>
+                <div class="mt-2 mb-6">
+                    <p class="text-sm text-gray-500" id="modal-confirm-message">Apakah Anda yakin?</p>
+                </div>
+                <div class="flex gap-3">
+                    <button type="button" onclick="closeConfirmModal()" class="flex-1 bg-gray-100 text-gray-700 hover:bg-gray-200 font-medium py-2 rounded-md transition-colors">Batal</button>
+                    <button type="button" id="modal-confirm-btn" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-medium py-2 rounded-md transition-colors shadow-sm">Ya, Lanjutkan</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, deleteDoc, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // Environment Variables (handled by platform)
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'absensi-ibadah-app';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-            // Mock config fallback if run outside environment
-            projectId: "mock-project", 
+        const firebaseConfig = {
+          apiKey: "AIzaSyChgFUt1F9B1Xqflaz23-h5DCGCnqUWvj8",
+          authDomain: "simkip-4a5d1.firebaseapp.com",
+          projectId: "simkip-4a5d1",
+          storageBucket: "simkip-4a5d1.firebasestorage.app",
+          messagingSenderId: "40541221435",
+          appId: "1:40541221435:web:2da235456e4016a8e0621e"
         };
-
         // Init Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
@@ -692,10 +778,13 @@
         let allIssuesData = {}; // Data storage untuk riwayat masalah
         let allKasPayments = {}; // Data pembayaran kas { "2026-10": { "ILHAM": true } }
         let allKasTransactions = []; // Data history kas
+        let allAnnouncements = []; // Data pengumuman
+
         let unsubscribeSnapshot = null;
         let unsubscribeIssues = null;
         let unsubscribeKasPayments = null;
         let unsubscribeKasTransactions = null;
+        let unsubscribeAnnouncements = null;
 
         // UI Elements
         const elLoginView = document.getElementById('login-view');
@@ -738,6 +827,37 @@
                 backdrop.classList.add('hidden');
             }, 200);
         };
+
+        let confirmCallback = null;
+        window.showConfirmModal = (title, message, callback) => {
+            document.getElementById('modal-confirm-title').textContent = title;
+            document.getElementById('modal-confirm-message').textContent = message;
+            confirmCallback = callback;
+            
+            const backdrop = document.getElementById('modal-confirm-backdrop');
+            const content = document.getElementById('modal-confirm-content');
+            backdrop.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        };
+
+        window.closeConfirmModal = () => {
+            const backdrop = document.getElementById('modal-confirm-backdrop');
+            const content = document.getElementById('modal-confirm-content');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                backdrop.classList.add('hidden');
+                confirmCallback = null;
+            }, 200);
+        };
+
+        document.getElementById('modal-confirm-btn').addEventListener('click', () => {
+            if (confirmCallback) confirmCallback();
+            closeConfirmModal();
+        });
 
         async function initializeAppLogic() {
             // Populate select dropdown for issues
@@ -852,6 +972,18 @@
                 if (currentUserRole === 'bendahara') renderBendaharaDashboard();
                 if (currentUserRole === 'peserta') renderUserKas();
             });
+
+            // Listener Pusat Informasi (Announcements)
+            const annRef = doc(db, 'artifacts', appId, 'public', 'data', 'announcements', 'global');
+            unsubscribeAnnouncements = onSnapshot(annRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    allAnnouncements = docSnap.data().records || [];
+                } else {
+                    allAnnouncements = [];
+                }
+                if (currentUserRole === 'admin') renderAdminAnnouncements();
+                if (currentUserRole === 'peserta') renderUserAnnouncements();
+            });
         }
 
         window.setLoginTab = (tab) => {
@@ -943,6 +1075,7 @@
                 elNavUserInfo.innerHTML = `<span class="bg-blue-800 px-2 py-1 rounded text-xs font-medium border border-blue-400">Mode Admin</span>`;
                 renderAdminTable();
                 renderAdminIssues();
+                renderAdminAnnouncements();
             } else if (currentUserRole === 'bendahara') {
                 elBendaharaView.classList.remove('hidden');
                 elNavUserInfo.innerHTML = `<span class="bg-green-800 px-2 py-1 rounded text-xs font-medium border border-green-400">Mode Bendahara</span>`;
@@ -967,6 +1100,13 @@
             const docId = `${date}_${program}`;
             const dayData = allAttendanceData.find(d => d.id === docId);
             
+            const btnDelete = document.getElementById('btn-delete-absensi');
+            if(dayData) {
+                btnDelete.classList.remove('hidden');
+            } else {
+                btnDelete.classList.add('hidden');
+            }
+
             const records = dayData ? dayData.records : {};
 
             const tbody = document.getElementById('admin-table-body');
@@ -1019,6 +1159,24 @@
             });
         };
 
+        window.deleteAttendance = () => {
+            showConfirmModal("Hapus Data Absensi?", "Apakah Anda yakin ingin menghapus seluruh data absensi untuk program dan tanggal ini secara permanen?", async () => {
+                if (!auth.currentUser) return;
+                
+                const date = document.getElementById('admin-date').value;
+                const program = document.getElementById('admin-program').value;
+                const docId = `${date}_${program}`;
+                
+                try {
+                    await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'attendance', docId));
+                    showModal("Terhapus", "Data absensi berhasil dihapus.", "success");
+                } catch (error) {
+                    console.error("Gagal menghapus:", error);
+                    showModal("Error", "Gagal menghapus data dari server.", "error");
+                }
+            });
+        };
+
         window.saveAttendance = async () => {
             if (!auth.currentUser) {
                 showModal("Error", "Anda belum terautentikasi.", "error");
@@ -1061,197 +1219,118 @@
             }
         };
 
-        window.exportToExcel = () => {
-            const monthVal = document.getElementById('export-month').value; // format "YYYY-MM"
-            const program = document.getElementById('export-program').value;
-            
-            if (!monthVal) {
-                showModal("Error", "Silakan pilih bulan dan tahun.", "error");
-                return;
-            }
+        // --- SISTEM PUSAT INFORMASI (PENGUMUMAN) ---
 
-            const [year, month] = monthVal.split('-');
-            const standardMonthNames = ["", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-            const monthName = standardMonthNames[parseInt(month)];
-            const daysInMonth = new Date(year, parseInt(month), 0).getDate();
-
-            // Ambil data untuk bulan dan program yang dipilih
-            const prefix = `${year}-${month}`;
-            const monthlyData = allAttendanceData.filter(d => d.date.startsWith(prefix) && d.program === program);
-
-            // Inisiasi data kosong (semua belum diabsen)
-            const lookup = {};
-            PARTICIPANTS.forEach(p => {
-                lookup[p] = {};
-                for(let i=1; i<=daysInMonth; i++) lookup[p][i] = ''; // Jika absen kosong pada harinya dibiarkan kosong
-            });
-
-            // Populate data absen yang sudah diisi
-            monthlyData.forEach(d => {
-                const day = parseInt(d.date.split('-')[2]);
-                for (const [name, status] of Object.entries(d.records || {})) {
-                    if (lookup[name]) {
-                        let displayStatus = '';
-                        if (status === true || status === 'H') displayStatus = '✓';
-                        else if (status === 'A' || status === false) displayStatus = 'A';
-                        else if (status === 'I') displayStatus = 'i';
-                        else if (status === 'S') displayStatus = 's';
-                        
-                        lookup[name][day] = displayStatus;
-                    }
-                }
-            });
-
-            // Membangun Data Tabel Excel (Array of Arrays)
-            const aoa = [];
-            aoa.push(["DAFTAR HADIR PROGRAM PEMBINAAN KARAKTER MAHASISWA KIPK UNIVERSITAS SYIAH KUALA 2026/2027"]);
-            aoa.push([`Bulan: ${monthName} ${year}`]);
-            aoa.push([`Program: ${program}`]);
-            aoa.push([]);
-
-            // Header baris pertama
-            const header1 = ["No", "Nama", "Tanggal"];
-            for(let i=1; i<daysInMonth; i++) header1.push(""); // Padding for merge
-            header1.push("Total Alpa", "Evaluasi");
-            aoa.push(header1);
-
-            // Header baris kedua (Angka tanggal 1-31)
-            const header2 = ["", ""];
-            for(let i=1; i<=daysInMonth; i++) header2.push(i.toString());
-            header2.push("", "");
-            aoa.push(header2);
-
-            // Data peserta
-            PARTICIPANTS.forEach((name, index) => {
-                const row = [index + 1, name];
-                let totalAlpa = 0;
-                for(let i=1; i<=daysInMonth; i++) {
-                    const stat = lookup[name][i];
-                    row.push(stat);
-                    if (stat === 'A') totalAlpa++;
-                }
-                row.push(totalAlpa);
-                // Tambahkan keterangan Evaluasi jika alpa >= 5 kali
-                row.push(totalAlpa >= 5 ? "Evaluasi" : "");
-                aoa.push(row);
-            });
-
-            // Buat Workbook dan Sheet
-            const wb = XLSX.utils.book_new();
-            const ws = XLSX.utils.aoa_to_sheet(aoa);
-
-            // Melakukan merge cells supaya rapi
-            if(!ws["!merges"]) ws["!merges"] = [];
-            ws["!merges"].push({s:{r:0,c:0},e:{r:0,c:3 + daysInMonth}}); // Title
-            ws["!merges"].push({s:{r:1,c:0},e:{r:1,c:3}}); // Teks Bulan
-            ws["!merges"].push({s:{r:2,c:0},e:{r:2,c:3}}); // Teks Program
-            ws["!merges"].push({s:{r:4,c:2},e:{r:4,c:2 + daysInMonth - 1}}); // Header Tanggal
-            
-            // Merge vertikal header untuk No, Nama, Total Alpa, Evaluasi
-            ws["!merges"].push({s:{r:4,c:0},e:{r:5,c:0}}); // No
-            ws["!merges"].push({s:{r:4,c:1},e:{r:5,c:1}}); // Nama
-            ws["!merges"].push({s:{r:4,c:2+daysInMonth},e:{r:5,c:2+daysInMonth}}); // Total Alpa
-            ws["!merges"].push({s:{r:4,c:3+daysInMonth},e:{r:5,c:3+daysInMonth}}); // Evaluasi
-
-            // Adjust kolom sedikit
-            ws["!cols"] = [{wch: 5}, {wch: 25}]; // Lebar kolom no & nama
-
-            XLSX.utils.book_append_sheet(wb, ws, "Rekap");
-            XLSX.writeFile(wb, `Rekap_Absensi_${program}_${monthName}_${year}.xlsx`);
-        };
-
-        // --- SISTEM RIWAYAT MASALAH ---
-
-        window.saveIssue = async () => {
+        window.saveAnnouncement = async () => {
             if (!auth.currentUser) return;
-            
-            const name = document.getElementById('issue-user-select').value;
-            const date = document.getElementById('issue-date').value;
-            const desc = document.getElementById('issue-desc').value.trim();
-            
-            if (!name || !date || !desc) {
-                showModal("Perhatian", "Silakan lengkapi pilihan Peserta, Tanggal, dan Deskripsi masalah.", "error");
+            const title = document.getElementById('info-title').value.trim();
+            const desc = document.getElementById('info-desc').value.trim();
+            const link = document.getElementById('info-link').value.trim();
+            const type = document.getElementById('info-type').value;
+
+            if (!title || !desc) {
+                showModal("Perhatian", "Judul dan Deskripsi pengumuman wajib diisi.", "error");
                 return;
             }
 
-            const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'user_issues', name);
-            const currentIssues = allIssuesData[name] || [];
-            
-            const newIssue = {
+            const d = new Date();
+            const dateStr = d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + ' ' + d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
+
+            const newAnn = {
                 id: Date.now().toString(),
-                date: date,
-                desc: desc
+                date: dateStr,
+                timestamp: Date.now(),
+                title, desc, link, type
             };
-            
-            currentIssues.push(newIssue);
-            
+
+            const updatedAnn = [newAnn, ...allAnnouncements];
+            const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'announcements', 'global');
+
             try {
-                await setDoc(docRef, { records: currentIssues });
-                document.getElementById('issue-desc').value = ''; // Kosongkan input text
-                showModal("Berhasil", `Catatan masalah untuk ${name} telah disimpan.`, "success");
-            } catch (e) {
-                console.error("Gagal menyimpan masalah:", e);
-                showModal("Error", "Gagal menyimpan catatan ke database.", "error");
+                await setDoc(docRef, { records: updatedAnn });
+                document.getElementById('info-title').value = '';
+                document.getElementById('info-desc').value = '';
+                document.getElementById('info-link').value = '';
+                showModal("Berhasil", "Pengumuman berhasil diterbitkan.", "success");
+            } catch (error) {
+                console.error("Gagal simpan info:", error);
+                showModal("Error", "Gagal menyimpan pengumuman.", "error");
             }
         };
 
-        window.renderAdminIssues = () => {
-            const name = document.getElementById('issue-user-select').value;
-            const list = document.getElementById('admin-issues-list');
-            const nameLabel = document.getElementById('issue-selected-name');
-            
-            if (!name) {
-                list.innerHTML = '<li class="text-sm text-gray-500 italic">Pilih peserta pada kolom di atas untuk melihat riwayat masalah.</li>';
-                nameLabel.textContent = "-";
+        window.deleteAnnouncement = (id) => {
+            showConfirmModal("Hapus Pengumuman?", "Apakah Anda yakin ingin menarik pengumuman ini?", async () => {
+                if (!auth.currentUser) return;
+                const updatedAnn = allAnnouncements.filter(ann => ann.id !== id);
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'announcements', 'global');
+                try {
+                    await setDoc(docRef, { records: updatedAnn });
+                    showModal("Dihapus", "Pengumuman telah ditarik.", "success");
+                } catch (error) {
+                    console.error("Gagal hapus info:", error);
+                    showModal("Error", "Gagal menghapus pengumuman.", "error");
+                }
+            });
+        };
+
+        window.renderAdminAnnouncements = () => {
+            const list = document.getElementById('admin-info-list');
+            if (allAnnouncements.length === 0) {
+                list.innerHTML = '<li class="text-sm text-gray-500 italic py-3">Belum ada pengumuman diterbitkan.</li>';
                 return;
             }
-            
-            nameLabel.textContent = name;
-            const issues = allIssuesData[name] || [];
-            
-            if (issues.length === 0) {
-                list.innerHTML = '<li class="text-sm text-green-600 font-medium bg-green-50 p-3 rounded-lg border border-green-200">Tidak ada catatan masalah untuk peserta ini.</li>';
-                return;
-            }
-            
-            // Urutkan masalah dari yang terbaru
-            const sortedIssues = [...issues].sort((a,b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
-            
-            list.innerHTML = sortedIssues.map(issue => `
-                <li class="bg-red-50 p-4 rounded-lg border border-red-100 shadow-sm transition-all hover:bg-red-100">
-                    <div class="flex justify-between items-start mb-2">
-                        <span class="text-xs font-bold bg-red-200 text-red-800 px-2.5 py-1 rounded shadow-sm">${issue.date}</span>
+
+            list.innerHTML = allAnnouncements.map(ann => `
+                <li class="py-3 flex justify-between items-start">
+                    <div class="pr-4">
+                        <h5 class="font-bold text-gray-800">${ann.title} <span class="text-xs text-gray-500 font-normal ml-2">${ann.date}</span></h5>
+                        <p class="text-sm text-gray-600 mt-1 line-clamp-2">${ann.desc}</p>
                     </div>
-                    <p class="text-sm text-gray-800 mt-1">${issue.desc}</p>
+                    <button onclick="deleteAnnouncement('${ann.id}')" class="text-red-500 hover:text-red-700 bg-red-50 p-2 rounded-md transition-colors flex-shrink-0" title="Hapus Pengumuman">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                    </button>
                 </li>
             `).join('');
         };
 
-        window.renderUserIssues = () => {
-            if (!currentUserName) return;
-            const list = document.getElementById('user-issues-list');
-            const empty = document.getElementById('user-issues-empty');
-            const issues = allIssuesData[currentUserName] || [];
+        window.renderUserAnnouncements = () => {
+            const container = document.getElementById('user-announcement-container');
+            const list = document.getElementById('user-announcement-list');
             
-            if (issues.length === 0) {
-                empty.classList.remove('hidden');
-                list.innerHTML = '';
-            } else {
-                empty.classList.add('hidden');
-                const sortedIssues = [...issues].sort((a,b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
-                list.innerHTML = sortedIssues.map(issue => `
-                    <li class="p-5 hover:bg-red-50 transition-colors">
-                        <div class="flex items-center mb-2">
-                            <span class="flex items-center justify-center w-6 h-6 rounded-full bg-red-100 text-red-600 mr-3">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            </span>
-                            <span class="text-sm font-bold text-gray-600">${issue.date}</span>
-                        </div>
-                        <p class="text-sm text-gray-800 pl-9">${issue.desc}</p>
-                    </li>
-                `).join('');
+            if (allAnnouncements.length === 0) {
+                container.classList.add('hidden');
+                return;
             }
+            
+            container.classList.remove('hidden');
+            
+            // Limit to top 5 recent announcements
+            const displayAnn = allAnnouncements.slice(0, 5);
+            
+            list.innerHTML = displayAnn.map(ann => {
+                let attachmentHtml = '';
+                if (ann.link) {
+                    if (ann.type === 'image') {
+                        attachmentHtml = `<div class="mt-3"><img src="${ann.link}" alt="Lampiran" class="max-w-full h-auto rounded-lg border border-gray-200 shadow-sm max-h-64 object-contain" onerror="this.outerHTML='<span class=\\'text-xs text-red-500 italic\\'>Gagal memuat gambar dari tautan.</span>'"></div>`;
+                    } else {
+                        attachmentHtml = `<div class="mt-3"><a href="${ann.link}" target="_blank" class="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-800 bg-indigo-50 px-3 py-1.5 rounded-md transition-colors"><svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg> Buka Tautan Lampiran</a></div>`;
+                    }
+                }
+                
+                return `
+                    <div class="bg-gradient-to-r from-indigo-50 to-white p-5 rounded-xl border border-indigo-100 shadow-sm relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1.5 h-full bg-indigo-500"></div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-gray-900 text-lg">${ann.title}</h4>
+                            <span class="text-xs font-semibold text-indigo-600 bg-indigo-100 px-2 py-1 rounded shadow-sm whitespace-nowrap ml-3">${ann.date}</span>
+                        </div>
+                        <p class="text-gray-700 text-sm md:text-base whitespace-pre-wrap">${ann.desc}</p>
+                        ${attachmentHtml}
+                    </div>
+                `;
+            }).join('');
         };
+
 
         // --- SISTEM KAS BENDAHARA ---
 
@@ -1276,6 +1355,30 @@
                 console.error("Gagal simpan kas:", error);
                 showModal("Error", "Gagal menyimpan status kas.", "error");
             }
+        };
+
+        window.cancelKasPayment = () => {
+            showConfirmModal("Batalkan Status Lunas?", "Apakah Anda yakin ingin mencabut status lunas untuk peserta ini di bulan yang dipilih?", async () => {
+                const month = document.getElementById('bendahara-kas-month').value;
+                const user = document.getElementById('bendahara-kas-user').value;
+                if (!month || !user || !auth.currentUser) return;
+
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'kas_payments', month);
+                const currentMonthRecords = allKasPayments[month] || {};
+                
+                if (currentMonthRecords[user]) {
+                    delete currentMonthRecords[user];
+                    try {
+                        await setDoc(docRef, { records: currentMonthRecords });
+                        showModal("Berhasil", `Status lunas atas nama ${user} untuk bulan ${month} berhasil dibatalkan.`, "success");
+                    } catch (error) {
+                        console.error("Gagal batal kas:", error);
+                        showModal("Error", "Gagal membatalkan status kas.", "error");
+                    }
+                } else {
+                    showModal("Info", "Peserta ini memang belum tercatat lunas di bulan tersebut.", "success");
+                }
+            });
         };
 
         window.saveKasTransaction = async () => {
@@ -1305,6 +1408,21 @@
             }
         };
 
+        window.deleteKasTransaction = (id) => {
+            showConfirmModal("Hapus Transaksi?", "Apakah Anda yakin ingin menghapus data transaksi ini permanen?", async () => {
+                if (!auth.currentUser) return;
+                const updatedTrx = allKasTransactions.filter(trx => trx.id !== id);
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'kas_transactions', 'global');
+                try {
+                    await setDoc(docRef, { records: updatedTrx });
+                    showModal("Berhasil", "Data transaksi berhasil dihapus.", "success");
+                } catch (error) {
+                    console.error("Gagal hapus trx:", error);
+                    showModal("Error", "Gagal menghapus transaksi.", "error");
+                }
+            });
+        };
+
         window.renderBendaharaDashboard = () => {
             const tbody = document.getElementById('bendahara-trx-body');
             const balanceEl = document.getElementById('bendahara-balance');
@@ -1329,12 +1447,17 @@
                         <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-bold ${amountClass}">
                             ${formatRupiah(trx.amount)}
                         </td>
+                        <td class="px-4 py-3 whitespace-nowrap text-center text-sm">
+                            <button onclick="deleteKasTransaction('${trx.id}')" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded transition-colors" title="Hapus Transaksi">
+                                <svg class="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            </button>
+                        </td>
                     </tr>
                 `;
             }).join('');
             
             if (sorted.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" class="px-6 py-4 text-center text-sm text-gray-500">Belum ada transaksi.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500">Belum ada transaksi.</td></tr>';
             }
             
             balanceEl.textContent = formatRupiah(total);
@@ -1553,6 +1676,7 @@
             renderUserIssues();
             renderUserMonthlyRecap();
             renderUserKas(); // Refresh tampilan kas 
+            renderUserAnnouncements(); // Refresh Pengumuman
         }
 
         // Start initialization when page loads
